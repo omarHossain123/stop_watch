@@ -1,75 +1,185 @@
+:root {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #1e1e1e;
+  --accent-primary: #2a2a2a;
+  --accent-secondary: #3a3a3a;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --button-hover: #333333;
+  --button-active: #404040;
+  --glow-color: rgba(255, 255, 255, 0.1);
+  --gradient-start: rgba(255, 255, 255, 0.3);
+  --gradient-end: rgba(255, 255, 255, 0.1);
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: black;
-  color: white;
+  font-family: "Inter", Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.app {
-  text-align: center;
-  background-color: black;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  min-height: 100vh;
+  line-height: 1.6;
+  padding: 1rem;
+  overflow: hidden; /* Prevent scrolling */
 }
 
 .tabs {
-  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .tab-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .tab-buttons button {
-  background-color: white;
-  color: black;
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  color: var(--text-secondary);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tab-buttons button:hover {
+  background: linear-gradient(
+    145deg,
+    var(--button-hover),
+    var(--accent-secondary)
+  );
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Subtle scaling effect */
 }
 
 .tab-buttons button.active {
-  background-color: #333;
-  color: white;
+  background: linear-gradient(
+    145deg,
+    var(--button-active),
+    var(--accent-secondary)
+  );
+  color: var(--text-primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .stopwatch,
 .current-time {
-  margin-top: 20px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  border-radius: 16px;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
 
 .time-display {
-  font-size: 48px;
-  margin: 20px 0;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 1.5rem 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(
+    145deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  -webkit-background-clip: text;
+  color: var(--text-primary);
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 .buttons button {
-  background-color: white;
-  color: black;
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  color: var(--text-secondary);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.buttons button:hover:not(:disabled) {
+  background: linear-gradient(
+    145deg,
+    var(--button-hover),
+    var(--accent-secondary)
+  );
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02); /* Subtle scaling effect */
+}
+
+.buttons button:active:not(:disabled) {
+  transform: scale(1); /* Reset scaling on active */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .buttons button:disabled {
-  background-color: #ccc;
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  opacity: 0.5;
   cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .time-display {
+    font-size: 2.5rem;
+  }
+
+  .buttons {
+    gap: 0.5rem;
+  }
+
+  .buttons button,
+  .tab-buttons button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .stopwatch,
+  .current-time {
+    padding: 1rem;
+    border-radius: 12px;
+  }
 }
