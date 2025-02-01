@@ -12,8 +12,8 @@ const App = () => {
   useEffect(() => {
     if (isStopwatchRunning) {
       intervalRef.current = setInterval(() => {
-        setStopwatchTime((prevTime) => prevTime + 10);
-      }, 10);
+        setStopwatchTime((prevTime) => prevTime + 1000);
+      }, 1000);
     } else {
       clearInterval(intervalRef.current);
     }
